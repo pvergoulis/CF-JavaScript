@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button type="button" id="btn">Click me to get data</button>
+  <p id="output"></p>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+    document.getElementById('btn').addEventListener('click', async () => {
+      try{
+        let response = await axios.get('https://jsonplaceholder.typicode.com/posts/1')
+      
+        document.getElementById('output').innerHTML = `<b>Title: </b>${response.data.title}
+                                                                 <br>
+                                                                 <b>Body: </b>${response.data.body}`
+      }catch(error){
+        console.error('Get error ', error)
+        document.getElementById('output').innerHTML = `Error Getting data.`
+      }
+    })
+
+  </script>
+</body>
+</html>
